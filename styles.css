@@ -1,0 +1,88 @@
+/* Global styles */
+body {
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar styles */
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+/* Form input styles */
+.form-control {
+  transition: background-color 0.3s ease;
+}
+
+/* Button styles */
+.btn-outline-light,
+.btn-outline-primary {
+  transition: color 0.3s ease;
+}
+
+/* Card styles */
+.card {
+  width: 100%; /* Definir largura total */
+  margin-bottom: 20px; /* Adicionar margem inferior */
+}
+
+.card .card-body {
+  height: 100%; /* Garantir altura total do conteúdo */
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #141414;
+  color: #fff;
+}
+
+.dark-mode .navbar {
+  background-color: #000;
+}
+
+.dark-mode .form-control {
+  background-color: #000;
+  color: #fff;
+}
+
+.dark-mode .btn-outline-light,
+.dark-mode .btn-outline-primary {
+  color: #fff;
+}
+
+.dark-mode .card {
+  background-color: #000;
+  border: 1px solid #444;
+}
+
+.dark-mode .card-title {
+  color: #fff;
+}
+
+/* Light mode styles */
+.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+.light-mode .navbar {
+  background-color: #f8f9fa;
+}
+
+.light-mode .form-control {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.light-mode .btn-outline-light,
+.light-mode .btn-outline-primary {
+  color: #000;
+}
+
+.light-mode .card {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+}
+
+.light-mode .card-title {
+  color: #000;
+}
