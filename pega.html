@@ -10,47 +10,23 @@
 
 <body>
     <div class="modal-body"></div>
+    <script src="webtorrent.min.js"></script>
     <script>
-        // Use WebTorrent to handle the torrent
-        const client = new WebTorrent();
-        console.log("Loading torrent...");
-        client.add("magnet:?xt=urn:btih:37DE3E6848E6E6C4409D86FCA5DC930663CDDF08&dn=Fast+and+Furious+6%3A+The+Game+%282013%29+%5B720p%5D+%5BYTS.MX%5D&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=https%3A%2F%2Fopentracker.i2p.rocks%3A443%2Fannounce", function (torrent) {
-            console.log("Torrent info:", torrent);
+            const client = new WebTorrent()
 
-            const file = torrent.files.find((file) => file.name.endsWith(".mp4"));
+            // Sintel, a free, Creative Commons movie
+            const torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
 
-            if (!file) {
-                console.error("No MP4 file found in the torrent.");
-                return;
-            }
+            client.add(torrentId, function (torrent) {
+                // Torrents can contain many files. Let's use the .mp4 file
+                const file = torrent.files.find(function (file) {
+                    return file.name.endsWith('.mp4')
+                })
 
-            console.log("File found:", file.name);
-
-            // Create a video element
-            const video = document.createElement("video");
-            video.controls = true;
-
-            // Add video source
-            console.log("Creating video source...");
-            const fileURL = URL.createObjectURL(file.createReadStream());
-            console.log("File URL:", fileURL);
-            video.src = fileURL;
-
-            // Add the video to the modal body
-            const modalBody = document.querySelector(".modal-body");
-            modalBody.innerHTML = ""; // Clearing modal body
-            modalBody.appendChild(video); // Appending video element
-
-            // Listen for errors
-            video.addEventListener("error", function (e) {
-                console.error("Error loading video:", e);
-            });
-
-            // Listen for load event
-            video.addEventListener("loadeddata", function () {
-                console.log("Video loaded successfully.");
-            });
-        });
+                // Display the file by adding it to the DOM.
+                // Supports video, audio, image files, and more!
+                file.appendTo('body')
+            })
     </script>
 </body>
 
